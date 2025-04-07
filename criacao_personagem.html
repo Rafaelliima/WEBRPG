@@ -1,93 +1,48 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
+
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Criação de Personagem</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: #f4f4f4;
-      padding: 20px;
-    }
-    .container {
-      background: white;
-      padding: 20px;
-      border-radius: 15px;
-      max-width: 600px;
-      margin: auto;
-      box-shadow: 0 0 10px #ccc;
-    }
-    h2 {
-      text-align: center;
-    }
-    label {
-      display: block;
-      margin-top: 15px;
-    }
-    input, select, textarea {
-      width: 100%;
-      padding: 8px;
-      margin-top: 5px;
-      border-radius: 5px;
-      border: 1px solid #aaa;
-    }
-    button {
-      margin-top: 20px;
-      padding: 10px 20px;
-      background-color: #4CAF50;
-      color: white;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      width: 100%;
-    }
-    #resultado {
-      margin-top: 30px;
-      padding: 15px;
-      background: #e0ffe0;
-      border-left: 5px solid green;
-    }
-  </style>
+  <link rel="stylesheet" href="estilos/style.css">
 </head>
+
 <body>
   <div class="container">
-    <h2>🛡️ Criação de Personagem</h2>
+    <h1>Criação de Personagem</h1>
     <form id="form-personagem">
-      <label>👤 Nome:
-        <input type="text" id="nome" required />
-      </label>
 
-      <label>🧬 Raça:
-        <select id="raca">
-          <option value="Humano">1️⃣ Humano</option>
-          <option value="Elfo">2️⃣ Elfo</option>
-          <option value="Anão">3️⃣ Anão</option>
-          <option value="Orc">4️⃣ Orc</option>
-        </select>
-      </label>
+      <label for="nome">Nome:</label>
+      <input type="text" id="nome" required>
 
-      <label>📜 Histórico:
-        <textarea id="historico" rows="2" required></textarea>
-      </label>
+      <label for="raca">Raça:</label>
+      <select id="raca" required>
+        <option value="Humano">Humano</option>
+        <option value="Elfo">Elfo</option>
+        <option value="Anão">Anão</option>
+      </select>
 
-      <label>🧠 Personalidade:
-        <textarea id="personalidade" rows="2" required></textarea>
-      </label>
+      <label for="classe">Classe:</label>
+      <select id="classe" required>
+        <option value="Guerreiro">Guerreiro</option>
+        <option value="Mago">Mago</option>
+        <option value="Ladino">Ladino</option>
+      </select>
 
-      <label>🎯 Objetivo:
-        <textarea id="objetivo" rows="2" required></textarea>
-      </label>
+      <h3>Atributos (Distribua 10 pontos):</h3>
+      <div id="atributos">
+        <label>Força: <input type="number" id="forca" value="0" min="0" max="10"></label><br>
+        <label>Inteligência: <input type="number" id="inteligencia" value="0" min="0" max="10"></label><br>
+        <label>Destreza: <input type="number" id="destreza" value="0" min="0" max="10"></label>
+      </div>
+      <p>Pontos restantes: <span id="pontosRestantes">10</span></p>
 
-      <label>⚠️ Fraqueza:
-        <textarea id="fraqueza" rows="2" required></textarea>
-      </label>
-
-      <button type="submit">✨ Criar Personagem</button>
+      <button type="submit">Criar Personagem</button>
     </form>
-
-    <div id="resultado"></div>
   </div>
 
-  <script src="logica_personagem.js"></script>
+  <script src="scripts/logica_personagem.js"></script>
 </body>
+
 </html>
