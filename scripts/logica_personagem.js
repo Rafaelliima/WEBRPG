@@ -20,7 +20,7 @@ document.getElementById("form-personagem").addEventListener("submit", function (
   // Salvar localmente
   localStorage.setItem("personagem", JSON.stringify(personagem));
 
-  // Enviar para Google Sheets (coloque sua URL aqui)
+  // Enviar para Google Sheets (ajuste o link se necessário)
   fetch("https://script.google.com/macros/s/AKfycbyItoWKCDg3OEyewFLIimp5nLaSPbRXDBbmxlgBrXrcN4ywUjZGhZ9hmcldvp4oBLUhLQ/exec", {
     method: "POST",
     body: JSON.stringify(personagem),
@@ -28,9 +28,13 @@ document.getElementById("form-personagem").addEventListener("submit", function (
       "Content-Type": "application/json"
     }
   })
-    .then(res => res.text())
-    .then(data => console.log("Enviado para Sheets:", data))
-    .catch(err => console.error("Erro ao enviar:", err));
+    .then(response => response.text())
+    .then(data => {
+      console.log("Enviado para Sheets:", data);
+    })
+    .catch(error => {
+      console.error("Erro ao enviar:", error);
+    });
 
   // Mostrar história gerada
   const historiaArea = document.getElementById("historia-gerada");
