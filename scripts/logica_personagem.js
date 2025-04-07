@@ -7,6 +7,7 @@ document.getElementById("form-personagem").addEventListener("submit", function (
   const classe = document.getElementById("classe").value;
   const historiaEscolha = document.getElementById("historiaEscolha").value;
 
+  // Gerando a história final
   const personagem = {
     nome,
     sexo,
@@ -15,16 +16,16 @@ document.getElementById("form-personagem").addEventListener("submit", function (
     historiaEscolha
   };
 
+  // Gerar a história baseada nas escolhas do usuário
   personagem.historia = gerarHistoria(personagem);
 
   // Salvar localmente
   localStorage.setItem("personagem", JSON.stringify(personagem));
 
-  // Enviar para Google Sheets (ajuste o link se necessário)
-  
+  // Enviar para o Google Sheets através do proxy
   const url = 'https://script.google.com/macros/s/AKfycbyNYSTPfDOPU-vyUXg4C0ao4VftjKoBFeVgDmt5AVeyDEu9tp6zFdbcdoPn_g9QEcKfdA/exec';
-  const proxyUrl = 'https://corsproxy.io/?url=' + encodeURIComponent(url);
-  
+  const proxyUrl = 'https://corsproxy.io/?key=ec339eb9&url=' + encodeURIComponent(url);
+
   fetch(proxyUrl, {
     method: 'POST',
     body: JSON.stringify(personagem),
@@ -33,17 +34,14 @@ document.getElementById("form-personagem").addEventListener("submit", function (
     }
   })
   .then(response => response.json())  // Se a resposta for JSON
-  .then(response => console.log('Resposta:', response))
-  .catch(error => console.error('Erro:', error));
-  
-
-  // Mostrar história gerada
-  const historiaArea = document.getElementById("historia-gerada");
-  historiaArea.textContent = personagem.historia;
-
-  document.getElementById("resumo-personagem").style.display = "block";
-
-  alert("Personagem criado com sucesso!");
+  .then(response => {
+    console.log('Resposta:', response);
+    alert('Personagem criado com sucesso!');
+  })
+  .catch(error => {
+    console.error('Erro ao enviar:', error);
+    alert('Ocorreu um erro ao criar o personagem.');
+  });
 });
 
 // Função que gera a história final com base nas escolhas
@@ -62,9 +60,9 @@ function gerarHistoria({ nome, sexo, raca, classe, historiaEscolha }) {
   };
 
   const historiaBase = `
-${nome}, ${sexo === 'masculino' ? 'nascido' : 'nascida'} da raça ${raca}, é conhecido como ${titulosClasse[classe]}.
-${nome} ${origens[historiaEscolha] || 'teve uma origem desconhecida.'}
-Hoje, como um(a) ${classe.toLowerCase()}, caminha pelas terras de Eldoria em busca de glória, respostas ou redenção.`;
+  ${nome}, ${sexo === 'masculino' ? 'nascido' : 'nascida'} da raça ${raca}, é conhecido como ${titulosClasse[classe]}.
+  ${nome} ${origens[historiaEscolha] || 'teve uma origem desconhecida.'}
+  Hoje, como um(a) ${classe.toLowerCase()}, caminha pelas terras de Eldoria em busca de glória, respostas ou redenção.`;
 
   return historiaBase.trim();
 }
