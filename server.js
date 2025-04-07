@@ -15,6 +15,13 @@ app.post('/personagem', (req, res) => {
   res.json({ mensagem: 'Personagem salvo com sucesso!' });
 });
 
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+
+
 // Iniciar o servidor
 app.listen(PORT, () => {
   console.log(`Servidor rodando em http://localhost:${PORT}`);
