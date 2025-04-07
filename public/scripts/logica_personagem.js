@@ -1,15 +1,14 @@
 document.getElementById('form-personagem').addEventListener('submit', async function (e) {
   e.preventDefault();
 
-  const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyNYSTPfDOPU-vyUXg4C0ao4VftjKoBFeVgDmt5AVeyDEu9tp6zFdbcdoPn_g9QEcKfdA/exec"; // sua URL
+  const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyNYSTPfDOPU-vyUXg4C0ao4VftjKoBFeVgDmt5AVeyDEu9tp6zFdbcdoPn_g9QEcKfdA/exec";
 
   // Captura os dados do formulário
   const nome = document.getElementById('nome').value;
   const sexo = document.getElementById('sexo').value;
   const raca = document.getElementById('raca').value;
   const classe = document.getElementById('classe').value;
-  const historia = document.getElementById('historia').value;
-  // const origem = document.getElementById('origem').value; // só se quiser adicionar
+  const historia = document.getElementById('historiaEscolha').value;
 
   const personagem = {
     nome,
@@ -17,7 +16,7 @@ document.getElementById('form-personagem').addEventListener('submit', async func
     raca,
     classe,
     historia,
-    key: "rpg123"  // chave de segurança
+    key: "rpg123"
   };
 
   // Envia para a planilha do Google
@@ -34,7 +33,7 @@ Nome: ${personagem.nome}
 Sexo: ${personagem.sexo}
 Raça: ${personagem.raca}
 Classe: ${personagem.classe}
-História: ${personagem.historia}
+Origem: ${personagem.historia}
   `;
 
   document.getElementById('historia-gerada').textContent = resumo;
