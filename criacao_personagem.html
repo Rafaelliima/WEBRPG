@@ -5,81 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Criação de Personagem</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(to right, #2c3e50, #34495e);
-      color: #ecf0f1;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
-
-    .container {
-      background-color: #1c1c1c;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-      width: 90%;
-      max-width: 500px;
-    }
-
-    h1, h3 {
-      text-align: center;
-      color: #f1c40f;
-    }
-
-    label {
-      display: block;
-      margin: 15px 0 5px;
-      color: #ecf0f1;
-    }
-
-    input[type="text"],
-    input[type="number"],
-    select {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 10px;
-      border-radius: 8px;
-      border: none;
-      background-color: #2d3436;
-      color: #fff;
-      font-size: 16px;
-    }
-
-    input[type="number"] {
-      width: 100%;
-    }
-
-    #atributos label {
-      margin: 8px 0;
-    }
-
-    p {
-      text-align: right;
-      color: #bdc3c7;
-    }
-
-    button {
-      width: 100%;
-      padding: 12px;
-      background-color: #27ae60;
-      color: white;
-      font-size: 16px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-
-    button:hover {
-      background-color: #2ecc71;
-    }
-  </style>
+  <link rel="stylesheet" href="estilos/style.css">
 </head>
 
 <body>
@@ -106,8 +32,8 @@
 
       <h3>Atributos (Distribua 10 pontos):</h3>
       <div id="atributos">
-        <label>Força: <input type="number" id="forca" value="0" min="0" max="10"></label>
-        <label>Inteligência: <input type="number" id="inteligencia" value="0" min="0" max="10"></label>
+        <label>Força: <input type="number" id="forca" value="0" min="0" max="10"></label><br>
+        <label>Inteligência: <input type="number" id="inteligencia" value="0" min="0" max="10"></label><br>
         <label>Destreza: <input type="number" id="destreza" value="0" min="0" max="10"></label>
       </div>
       <p>Pontos restantes: <span id="pontosRestantes">10</span></p>
