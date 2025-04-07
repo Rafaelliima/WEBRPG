@@ -1,77 +1,39 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const form = document.getElementById("form-personagem");
-  const pontosRestantesSpan = document.getElementById("pontosRestantes");
-  const atributos = {
-    forca: 0,
-    inteligencia: 0,
-    destreza: 0
-  };
-  let pontosDisponiveis = 10;
+let pontosRestantes = 10;
+const atributos = {
+  forca: 0,
+  inteligencia: 0,
+  destreza: 0
+};
 
-  function atualizarDisplay() {
-    document.getElementById("valor-forca").textContent = atributos.forca;
-    document.getElementById("valor-inteligencia").textContent = atributos.inteligencia;
-    document.getElementById("valor-destreza").textContent = atributos.destreza;
-    pontosRestantesSpan.textContent = pontosDisponiveis;
-    document.querySelectorAll(".btn-atributo").forEach(btn => {
-      btn.disabled = pontosDisponiveis <= 0;
-    });
+function adicionarPonto(atributo) {
+  if (pontosRestantes > 0) {
+    atributos[atributo]++;
+    pontosRestantes--;
+    document.getElementById(`${atributo}Valor`).textContent = atributos[atributo];
+    document.getElementById("pontosRestantes").textContent = pontosRestantes;
   }
+}
 
-  // Botões de incremento
-  document.getElementById("btn-forca").addEventListener("click", () => {
-    if (pontosDisponiveis > 0) {
-      atributos.forca++;
-      pontosDisponiveis--;
-      atualizarDisplay();
-    }
-  });
+document.getElementById("form-personagem").addEventListener("submit", function (e) {
+  e.preventDefault();
 
-  document.getElementById("btn-inteligencia").addEventListener("click", () => {
-    if (pontosDisponiveis > 0) {
-      atributos.inteligencia++;
-      pontosDisponiveis--;
-      atualizarDisplay();
-    }
-  });
+  const nome = document.getElementById("nome").value;
+  const raca = document.getElementById("raca").value;
+  const classe = document.getElementById("classe").value;
+  const origem = document.getElementById("origem").value;
 
-  document.getElementById("btn-destreza").addEventListener("click", () => {
-    if (pontosDisponiveis > 0) {
-      atributos.destreza++;
-      pontosDisponiveis--;
-      atualizarDisplay();
-    }
-  });
+  const historia = `
+    ${nome}, um(a) ${classe} ${raca} vindo de uma origem como "${origem}".
+    Sua jornada começou marcada pela ${origem.toLowerCase()}, forjando habilidades únicas em sua classe.
+    Carregando ${atributos.forca} pontos de força, ${atributos.inteligencia} de inteligência e ${atributos.destreza} de destreza,
+    o destino de ${nome} começa agora.
+  `;
 
-  // Bloqueia recarregamento acidental
-  window.onbeforeunload = () => {
-    return "Tem certeza que quer sair? Suas alterações podem ser perdidas.";
-  };
+  const historiaDiv = document.getElementById("historia-final");
+  historiaDiv.innerHTML = `<h3>História de ${nome}</h3><p>${historia}</p>`;
+  historiaDiv.classList.remove("escondido");
 
-  // Envio do formulário
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
-
-    if (pontosDisponiveis > 0) {
-      alert("Você ainda tem pontos para distribuir!");
-      return;
-    }
-
-    const nome = document.getElementById("nome").value.trim();
-    const raca = document.getElementById("raca").value;
-    const classe = document.getElementById("classe").value;
-
-    const personagem = {
-      nome,
-      raca,
-      classe,
-      ...atributos
-    };
-
-    console.log("Personagem criado:", personagem);
-    alert(`Personagem criado com sucesso! Bem-vindo, ${nome} o ${classe} ${raca}.`);
-    // Aqui você pode redirecionar para a próxima página do jogo
-  });
-
-  atualizarDisplay();
+  // Salvar personagem no localStorage
+  const personagem = { nome, raca, classe, origem, atributos };
+  localStorage.setItem("personagem", JSON.stringify(personagem));
 });

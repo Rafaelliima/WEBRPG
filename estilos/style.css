@@ -1,91 +1,74 @@
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(to right, #1e1e2f, #2c2c3e);
-    color: #fff;
+    font-family: 'Segoe UI', sans-serif;
+    background: #111;
+    color: #f4f4f4;
     margin: 0;
     padding: 0;
   }
   
+  .navbar {
+    background: #222;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .navbar h1 {
+    margin: 0;
+    font-size: 1.5rem;
+  }
+  
+  .navbar ul {
+    list-style: none;
+    display: flex;
+    gap: 1.2rem;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .navbar a {
+    color: #f4f4f4;
+    text-decoration: none;
+  }
+  
   .container {
+    padding: 2rem;
     max-width: 800px;
     margin: auto;
-    padding: 20px;
-    background-color: #29293d;
-    border-radius: 12px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.5);
-    margin-top: 40px;
   }
   
-  h1, h3 {
-    text-align: center;
-    color: #e0dfff;
-  }
-  
-  form label {
+  label {
     display: block;
-    margin-top: 15px;
-    font-weight: bold;
+    margin-top: 1rem;
   }
   
-  input[type="text"], select {
+  input, select, button {
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    font-size: 1rem;
     width: 100%;
-    padding: 10px;
-    border-radius: 8px;
-    border: none;
-    margin-top: 5px;
-    margin-bottom: 15px;
-    font-size: 16px;
   }
   
   .atributo {
+    margin-top: 0.5rem;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    margin: 10px 0;
+    gap: 1rem;
   }
   
-  .atributo span {
-    font-weight: bold;
-  }
-  
-  .atributo button {
-    margin-left: 10px;
-    padding: 5px 10px;
-    font-size: 16px;
-    border: none;
-    background-color: #4a90e2;
-    color: #fff;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .atributo button:disabled {
-    background-color: #999;
-    cursor: not-allowed;
-  }
-  
-  button[type="submit"] {
-    display: block;
-    width: 100%;
-    padding: 12px;
-    font-size: 18px;
-    background-color: #5cb85c;
+  button {
+    background-color: #2c2c2c;
     color: white;
     border: none;
-    border-radius: 8px;
-    margin-top: 20px;
     cursor: pointer;
   }
   
-  button[type="submit"]:hover {
-    background-color: #4cae4c;
+  button:hover {
+    background-color: #444;
   }
   
-  #pontosRestantes {
-    font-size: 18px;
-    color: #ffc107;
-    text-align: center;
-    display: block;
-    margin-top: 10px;
+  .escondido {
+    display: none;
   }
   
