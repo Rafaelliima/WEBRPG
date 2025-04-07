@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <title>Criação de Personagem</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f4;
+      padding: 20px;
+    }
+    .container {
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      max-width: 600px;
+      margin: auto;
+      box-shadow: 0 0 10px #ccc;
+    }
+    h2 {
+      text-align: center;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border-radius: 5px;
+      border: 1px solid #aaa;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      width: 100%;
+    }
+    #resultado {
+      margin-top: 30px;
+      padding: 15px;
+      background: #e0ffe0;
+      border-left: 5px solid green;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>🛡️ Criação de Personagem</h2>
+    <form id="form-personagem">
+      <label>👤 Nome:
+        <input type="text" id="nome" required />
+      </label>
+
+      <label>🧬 Raça:
+        <select id="raca">
+          <option value="Humano">1️⃣ Humano</option>
+          <option value="Elfo">2️⃣ Elfo</option>
+          <option value="Anão">3️⃣ Anão</option>
+          <option value="Orc">4️⃣ Orc</option>
+        </select>
+      </label>
+
+      <label>📜 Histórico:
+        <textarea id="historico" rows="2" required></textarea>
+      </label>
+
+      <label>🧠 Personalidade:
+        <textarea id="personalidade" rows="2" required></textarea>
+      </label>
+
+      <label>🎯 Objetivo:
+        <textarea id="objetivo" rows="2" required></textarea>
+      </label>
+
+      <label>⚠️ Fraqueza:
+        <textarea id="fraqueza" rows="2" required></textarea>
+      </label>
+
+      <button type="submit">✨ Criar Personagem</button>
+    </form>
+
+    <div id="resultado"></div>
+  </div>
+
+  <script src="logica_personagem.js"></script>
+</body>
+</html>
