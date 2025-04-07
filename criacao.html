@@ -1,63 +1,45 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Criação de Personagem</title>
-  <link rel="stylesheet" href="estilos/style.css"/>
-</head>
-<body>
-  <div class="container">
-    <h1>Criação de Personagem</h1>
-    <form id="form-personagem">
 
-      <label for="nome">Nome:</label>
-      <input type="text" id="nome" required>
+<div class="container">
+  <h1>Criação de Personagem</h1>
+  <form id="form-personagem">
+    <label for="nome">Nome:</label>
+    <input type="text" id="nome" required>
 
-      <label for="raca">Raça:</label>
-      <select id="raca" required>
-        <option value="Humano">Humano</option>
-        <option value="Elfo">Elfo</option>
-        <option value="Anão">Anão</option>
-      </select>
+    <label for="raca">Raça:</label>
+    <select id="raca" required>
+      <option value="Humano">Humano</option>
+      <option value="Elfo">Elfo</option>
+      <option value="Anão">Anão</option>
+    </select>
 
-      <label for="classe">Classe:</label>
-      <select id="classe" required>
-        <option value="Guerreiro">Guerreiro</option>
-        <option value="Mago">Mago</option>
-        <option value="Ladino">Ladino</option>
-      </select>
+    <label for="classe">Classe:</label>
+    <select id="classe" required>
+      <option value="Guerreiro">Guerreiro</option>
+      <option value="Mago">Mago</option>
+      <option value="Ladino">Ladino</option>
+    </select>
 
-      <label for="origem">Origem:</label>
-      <select id="origem" required>
-        <option value="Órfão">Órfão</option>
-        <option value="Nobre">Nobre</option>
-        <option value="Sobrevivente da guerra">Sobrevivente da guerra</option>
-      </select>
-
-      <h3>Atributos (Distribua 10 pontos):</h3>
-      <div id="atributos">
-        <div class="atributo">
-          Força: <span id="forcaValor">0</span>
-          <button type="button" onclick="adicionarPonto('forca')">+</button>
-        </div>
-        <div class="atributo">
-          Inteligência: <span id="inteligenciaValor">0</span>
-          <button type="button" onclick="adicionarPonto('inteligencia')">+</button>
-        </div>
-        <div class="atributo">
-          Destreza: <span id="destrezaValor">0</span>
-          <button type="button" onclick="adicionarPonto('destreza')">+</button>
-        </div>
+    <h3>Atributos (Distribua 10 pontos):</h3>
+    <div id="atributos">
+      <div class="atributo">
+        <span>Força:</span>
+        <button type="button" class="atributo-btn" data-atributo="forca">+</button>
+        <span id="forca">0</span>
       </div>
-      <p>Pontos restantes: <span id="pontosRestantes">10</span></p>
-
-      <button type="submit">Criar Personagem</button>
-    </form>
-
-    <div id="historia-final" class="escondido"></div>
-  </div>
-
-  <script src="scripts/logica_personagem.js"></script>
-</body>
-</html>
+      <div class="atributo">
+        <span>Inteligência:</span>
+        <button type="button" class="atributo-btn" data-atributo="inteligencia">+</button>
+        <span id="inteligencia">0</span>
+      </div>
+      <div class="atributo">
+        <span>Destreza:</span>
+        <button type="button" class="atributo-btn" data-atributo="destreza">+</button>
+        <span id="destreza">0</span>
+      </div>
+    </div>
+    <p>Pontos restantes: <span id="pontosRestantes">10</span></p>
+    <button type="submit">Criar Personagem</button>
+  </form>
+  <div id="historia-gerada" class="historia"></div>
+</div>
+<script src="scripts/logica_personagem.js"></script>

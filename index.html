@@ -1,44 +1,23 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>WEBRPG - Início</title>
-  <link rel="stylesheet" href="estilos/style.css"/>
+  <title>RPG - Nostalgic Game Studios</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <nav class="navbar">
-    <h1>WEBRPG</h1>
-    <ul>
-      <li><a href="#" onclick="carregarConteudo('inicio')">Início</a></li>
-      <li><a href="#" onclick="carregarConteudo('criacao')">Criar Personagem</a></li>
-      <li><a href="#" onclick="carregarConteudo('status')">Status</a></li>
-      <li><a href="#" onclick="carregarConteudo('missao')">Missão</a></li>
+    <div class="logo">Nostalgic Game Studios</div>
+    <ul class="nav-links">
+      <li><a href="#" data-page="home">Início</a></li>
+      <li><a href="#" data-page="criacao">Criação</a></li>
+      <li><a href="#" data-page="status">Status</a></li>
+      <li><a href="#" data-page="capitulos">Capítulos</a></li>
     </ul>
   </nav>
-
-  <main id="conteudo-principal">
-    <section id="inicio">
-      <h2>Bem-vindo ao mundo de Erathorn</h2>
-      <p>
-        Um continente em constante mudança, moldado pelas escolhas dos heróis. 
-        Mistérios ancestrais, guerras entre raças e segredos arcanos aguardam por você. 
-        Escolha sua classe, trace sua história e entre na jornada!
-      </p>
-      <footer>
-        <p>Desenvolvido por <strong>Nostalgic Game Studios</strong></p>
-      </footer>
-    </section>
-  </main>
-
-  <script>
-    function carregarConteudo(secao) {
-      const main = document.getElementById("conteudo-principal");
-      fetch(`${secao}.html`)
-        .then(res => res.text())
-        .then(html => main.innerHTML = html)
-        .catch(() => main.innerHTML = "<p>Conteúdo não encontrado.</p>");
-    }
-  </script>
+  <div id="conteudo"></div>
+  <script src="scripts/main.js"></script>
 </body>
 </html>
