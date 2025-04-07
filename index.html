@@ -1,26 +1,110 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>🌍 RPG - Portal Inicial</title>
-  <link rel="stylesheet" href="css/estilo.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RPG - Início</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Georgia', serif;
+      background-color: #121212;
+      color: #f1f1f1;
+    }
+
+    nav {
+      background-color: #1f1f1f;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      border-bottom: 2px solid #444;
+    }
+
+    nav .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: gold;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 1rem;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li a {
+      color: #f1f1f1;
+      text-decoration: none;
+      padding: 6px 10px;
+      border-radius: 6px;
+      transition: 0.3s;
+    }
+
+    nav ul li a:hover {
+      background-color: gold;
+      color: #121212;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 2rem auto;
+      padding: 1rem;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      color: gold;
+      margin-bottom: 1rem;
+    }
+
+    .resumo {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      background-color: #1a1a1a;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(255, 215, 0, 0.1);
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 4rem;
+      padding: 1rem;
+      border-top: 1px solid #333;
+      font-size: 0.9rem;
+      color: #999;
+    }
+  </style>
 </head>
+
 <body>
-  <main>
-    <h1>🌟 Bem-vindo ao seu RPG!</h1>
-    <p>Escolha uma das opções abaixo:</p>
+  <nav>
+    <div class="logo">🌙 Draelin</div>
+    <ul>
+      <li><a href="criacao.html">Criar Personagem</a></li>
+      <li><a href="#">Capítulos</a></li>
+      <li><a href="#">Missões</a></li>
+      <li><a href="#">Inventário</a></li>
+      <li><a href="#">Status</a></li>
+    </ul>
+  </nav>
 
-    <div class="botoes">
-      <a href="criacao_personagem.html"><button>➕ Criar Personagem</button></a>
-      <a href="ver_personagem.html"><button>👀 Ver Personagem</button></a>
-      <a href="editar_personagem.html"><button>🛠️ Editar Personagem</button></a>
-      <button onclick="sincronizarPersonagem()">🔄 Sincronizar com Google Sheets</button>
+  <div class="container">
+    <h1>Bem-vindo ao mundo de Draelin</h1>
+    <div class="resumo">
+      No coração do continente de Draelin, onde reinos travam guerras silenciosas e guildas secretas dominam as sombras, 
+      heróis e anti-heróis forjam seus destinos. Seja um guerreiro das planícies de Asklor, um mago dos arquivos de Ethralon,
+      ou um ladino das vielas de Ventronis. A história ainda será escrita — e começa com você.
     </div>
+  </div>
 
-    <div id="status-sincronizacao"></div>
-  </main>
-
-  <script src="js/sincronizar.js"></script>
+  <footer>
+    Feito com ❤️ por <strong>Nostalgic Game Studios</strong> — 2025
+  </footer>
 </body>
+
 </html>
