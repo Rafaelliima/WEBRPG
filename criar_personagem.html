@@ -4,56 +4,52 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Criação de Personagem</title>
-  <link rel="stylesheet" href="estilos/style.css" />
+  <link rel="stylesheet" href="estilos/style.css">
 </head>
 <body>
   <div class="container">
     <h1>Criação de Personagem</h1>
     <form id="form-personagem">
-
       <label for="nome">Nome:</label>
       <input type="text" id="nome" required />
 
       <label for="sexo">Sexo:</label>
       <select id="sexo" required>
-        <option value="" disabled selected>Selecione</option>
         <option value="masculino">Masculino</option>
         <option value="feminino">Feminino</option>
       </select>
 
       <label for="raca">Raça:</label>
       <select id="raca" required>
-        <option value="" disabled selected>Selecione</option>
         <option value="Humano">Humano</option>
         <option value="Elfo">Elfo</option>
         <option value="Anão">Anão</option>
-        <option value="Orc">Orc</option>
       </select>
 
       <label for="classe">Classe:</label>
       <select id="classe" required>
-        <option value="" disabled selected>Selecione</option>
         <option value="Guerreiro">Guerreiro</option>
         <option value="Mago">Mago</option>
         <option value="Ladino">Ladino</option>
       </select>
 
-      <label for="historia">Origem:</label>
-      <select id="historia" required>
-        <option value="" disabled selected>Escolha a origem do personagem</option>
-        <option value="orfao">Órfão(a) de Arveth</option>
-        <option value="nobre">Nobre de Velkaria</option>
-        <option value="campones">Camponês de Meredin</option>
-        <option value="exilado">Exilado(a) do Norte</option>
+      <label for="historiaEscolha">Origem:</label>
+      <select id="historiaEscolha" required>
+        <option value="orfao">Órfão</option>
+        <option value="nobre">Nobre</option>
+        <option value="campones">Camponês</option>
+        <option value="exilado">Exilado</option>
       </select>
 
       <button type="submit">Criar Personagem</button>
     </form>
 
-    <!-- Aqui aparecerá a história gerada -->
-    <div id="historiaGerada" class="historia-gerada"></div>
+    <div id="resumo-personagem" class="resumo" style="display: none;">
+      <h2>Resumo do Personagem</h2>
+      <pre id="historia-gerada"></pre>
+    </div>
   </div>
 
-  <script src="scripts/criacao_personagem.js"></script>
+  <script src="scripts/logica_personagem.js"></script>
 </body>
 </html>
