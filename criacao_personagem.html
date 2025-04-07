@@ -13,23 +13,41 @@
     <h1>Criação de Personagem</h1>
     <form id="form-personagem">
 
+      <!-- Nome do Personagem -->
       <label for="nome">Nome:</label>
       <input type="text" id="nome" required>
 
+      <!-- Raça -->
       <label for="raca">Raça:</label>
       <select id="raca" required>
         <option value="Humano">Humano</option>
         <option value="Elfo">Elfo</option>
         <option value="Anão">Anão</option>
+        <option value="Orc">Orc</option>
+        <option value="Meio-Demônio">Meio-Demônio</option>
       </select>
 
+      <!-- Classe -->
       <label for="classe">Classe:</label>
       <select id="classe" required>
-        <option value="Guerreiro">Guerreiro</option>
-        <option value="Mago">Mago</option>
-        <option value="Ladino">Ladino</option>
+        <option value="Guerreiro">Aprendiz de Guerreiro</option>
+        <option value="Mago">Aprendiz de Mago</option>
+        <option value="Ladino">Aprendiz de Ladino</option>
+        <option value="Clérigo">Aprendiz de Clérigo</option>
+        <option value="Bárbaro">Aprendiz de Bárbaro</option>
       </select>
 
+      <!-- História Predefinida -->
+      <label for="historia">História:</label>
+      <select id="historia" required>
+        <option value="orfao">Órfão em uma vila destruída</option>
+        <option value="nobre">Descendente de uma linhagem nobre esquecida</option>
+        <option value="fugitivo">Fugitivo de um reino tirano</option>
+        <option value="campones">Camponês marcado por uma profecia</option>
+        <option value="cultista">Ex-cultista redimido pela fé</option>
+      </select>
+
+      <!-- Atributos -->
       <h3>Atributos (Distribua 10 pontos):</h3>
       <div id="atributos">
         <label>Força: <input type="number" id="forca" value="0" min="0" max="10"></label><br>
@@ -38,7 +56,21 @@
       </div>
       <p>Pontos restantes: <span id="pontosRestantes">10</span></p>
 
+      <!-- Espaço para futuro: inventário, status, etc -->
+      <div id="futuros-recursos" style="display:none">
+        <!-- Slots reservados -->
+        <div id="missaoAtual"></div>
+        <div id="capituloAtual"></div>
+        <div id="inventario"></div>
+        <div id="statusPersonagem"></div>
+        <div id="alinhamento"></div>
+        <div id="relacoesComFaccoes"></div>
+      </div>
+
       <button type="submit">Criar Personagem</button>
+
+      <!-- Resultado da história gerada -->
+      <div id="historiaGerada" style="margin-top:20px;"></div>
     </form>
   </div>
 
