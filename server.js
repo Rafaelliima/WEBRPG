@@ -12,20 +12,21 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // URL do seu Web App do Google Script
-const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyNYSTPfDOPU-vyUXg4C0ao4VftjKoBFeVgDmt5AVeyDEu9tp6zFdbcdoPn_g9QEcKfdA/exec';
+const axios = require('axios');
 
-// Rota que recebe os dados do personagem
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyNYSTPfDOPU-vyUXg4C0ao4VftjKoBFeVgDmt5AVeyDEu9tp6zFdbcdoPn_g9QEcKfdA/exec";
+
+// Dentro da sua rota POST
 app.post('/personagem', async (req, res) => {
   const personagem = req.body;
   console.log('Personagem recebido:', personagem);
 
   try {
-    // Envia os dados para o Google Sheets via seu script
     await axios.post(GOOGLE_SCRIPT_URL, personagem);
-    res.json({ mensagem: 'Personagem salvo com sucesso no Google Sheets!' });
+    res.json({ mensagem: 'Personagem salvo com sucesso!' });
   } catch (error) {
-    console.error('Erro ao enviar para o Google Sheets:', error.message);
-    res.status(500).json({ mensagem: 'Erro ao salvar personagem.' });
+    console.error('Erro ao enviar para Google Sheets:', error);
+    res.status(500).json({ mensagem: 'Erro ao salvar personagem na planilha' });
   }
 });
 
