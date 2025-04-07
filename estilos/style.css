@@ -1,74 +1,91 @@
-body {
-    font-family: 'Segoe UI', sans-serif;
-    background: #111;
-    color: #f4f4f4;
+/* Reset básico */
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
   }
   
-  .navbar {
-    background: #222;
-    padding: 1rem 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .navbar h1 {
-    margin: 0;
-    font-size: 1.5rem;
-  }
-  
-  .navbar ul {
-    list-style: none;
-    display: flex;
-    gap: 1.2rem;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .navbar a {
+  body {
+    font-family: "Georgia", serif;
+    background: linear-gradient(to right, #1e1e2f, #3b2c4e);
     color: #f4f4f4;
-    text-decoration: none;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    padding-top: 60px;
   }
   
   .container {
-    padding: 2rem;
-    max-width: 800px;
-    margin: auto;
+    background: rgba(0, 0, 0, 0.6);
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    padding: 30px;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+  }
+  
+  h1 {
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 28px;
+    color: #ffd700;
+    text-shadow: 1px 1px 3px #000;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
   }
   
   label {
-    display: block;
-    margin-top: 1rem;
+    font-weight: bold;
+    color: #ddd;
   }
   
-  input, select, button {
-    margin-top: 0.5rem;
-    padding: 0.5rem;
-    font-size: 1rem;
-    width: 100%;
+  input[type="text"],
+  select {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #2d2d3d;
+    color: #fff;
+    outline: none;
   }
   
-  .atributo {
-    margin-top: 0.5rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
+  select:focus,
+  input[type="text"]:focus {
+    border: 1px solid #ffd700;
   }
   
   button {
-    background-color: #2c2c2c;
-    color: white;
+    background-color: #6b44c4;
+    color: #fff;
     border: none;
+    padding: 12px;
+    font-size: 16px;
+    margin-top: 10px;
+    border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
   }
   
   button:hover {
-    background-color: #444;
+    background-color: #4a2e9a;
   }
   
-  .escondido {
-    display: none;
+  .historia-gerada {
+    margin-top: 20px;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #888;
+    font-style: italic;
+    font-size: 16px;
+    line-height: 1.5;
+    white-space: pre-wrap;
   }
   
