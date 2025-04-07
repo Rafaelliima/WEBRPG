@@ -13,68 +13,79 @@
     <h1>Criação de Personagem</h1>
     <form id="form-personagem">
 
-      <!-- Nome do Personagem -->
       <label for="nome">Nome:</label>
       <input type="text" id="nome" required>
 
-      <!-- Raça -->
       <label for="raca">Raça:</label>
       <select id="raca" required>
         <option value="Humano">Humano</option>
         <option value="Elfo">Elfo</option>
         <option value="Anão">Anão</option>
         <option value="Orc">Orc</option>
-        <option value="Meio-Demônio">Meio-Demônio</option>
+        <option value="Tiefling">Tiefling</option>
       </select>
 
-      <!-- Classe -->
       <label for="classe">Classe:</label>
       <select id="classe" required>
-        <option value="Guerreiro">Aprendiz de Guerreiro</option>
-        <option value="Mago">Aprendiz de Mago</option>
-        <option value="Ladino">Aprendiz de Ladino</option>
-        <option value="Clérigo">Aprendiz de Clérigo</option>
-        <option value="Bárbaro">Aprendiz de Bárbaro</option>
+        <option value="Guerreiro">Guerreiro</option>
+        <option value="Mago">Mago</option>
+        <option value="Ladino">Ladino</option>
+        <option value="Clérigo">Clérigo</option>
+        <option value="Arqueiro">Arqueiro</option>
       </select>
 
-      <!-- História Predefinida -->
-      <label for="historia">História:</label>
+      <label for="historia">Passado do Personagem:</label>
       <select id="historia" required>
-        <option value="orfao">Órfão em uma vila destruída</option>
-        <option value="nobre">Descendente de uma linhagem nobre esquecida</option>
-        <option value="fugitivo">Fugitivo de um reino tirano</option>
-        <option value="campones">Camponês marcado por uma profecia</option>
-        <option value="cultista">Ex-cultista redimido pela fé</option>
+        <option value="orfao">Órfão criado nas ruas</option>
+        <option value="nobre">De família nobre caída em desgraça</option>
+        <option value="exilado">Exilado de uma terra distante</option>
+        <option value="acólito">Servo de uma ordem antiga</option>
       </select>
 
-      <!-- Atributos -->
       <h3>Atributos (Distribua 10 pontos):</h3>
       <div id="atributos">
-        <label>Força: <input type="number" id="forca" value="0" min="0" max="10"></label><br>
-        <label>Inteligência: <input type="number" id="inteligencia" value="0" min="0" max="10"></label><br>
-        <label>Destreza: <input type="number" id="destreza" value="0" min="0" max="10"></label>
+        <label>Força:
+          <button type="button" class="btn-atributo" data-atributo="forca">+</button>
+          <span id="forca">0</span>
+        </label><br>
+        <label>Inteligência:
+          <button type="button" class="btn-atributo" data-atributo="inteligencia">+</button>
+          <span id="inteligencia">0</span>
+        </label><br>
+        <label>Destreza:
+          <button type="button" class="btn-atributo" data-atributo="destreza">+</button>
+          <span id="destreza">0</span>
+        </label>
       </div>
       <p>Pontos restantes: <span id="pontosRestantes">10</span></p>
 
-      <!-- Espaço para futuro: inventário, status, etc -->
-      <div id="futuros-recursos" style="display:none">
-        <!-- Slots reservados -->
-        <div id="missaoAtual"></div>
-        <div id="capituloAtual"></div>
-        <div id="inventario"></div>
-        <div id="statusPersonagem"></div>
-        <div id="alinhamento"></div>
-        <div id="relacoesComFaccoes"></div>
-      </div>
-
       <button type="submit">Criar Personagem</button>
-
-      <!-- Resultado da história gerada -->
-      <div id="historiaGerada" style="margin-top:20px;"></div>
     </form>
+
+    <div id="historiaFinal" class="historia-final" style="display: none;">
+      <h2>História do Personagem</h2>
+      <p id="resumoHistoria"></p>
+    </div>
   </div>
 
   <script src="scripts/logica_personagem.js"></script>
 </body>
+
+
+<div class="atributo">
+  <span>Força: <span id="valor-forca">0</span></span>
+  <button type="button" id="btn-forca" class="btn-atributo">+</button>
+</div>
+
+<div class="atributo">
+  <span>Inteligência: <span id="valor-inteligencia">0</span></span>
+  <button type="button" id="btn-inteligencia" class="btn-atributo">+</button>
+</div>
+
+<div class="atributo">
+  <span>Destreza: <span id="valor-destreza">0</span></span>
+  <button type="button" id="btn-destreza" class="btn-atributo">+</button>
+</div>
+
 
 </html>

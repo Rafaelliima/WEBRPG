@@ -1,41 +1,59 @@
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("form-personagem");
   const pontosRestantesSpan = document.getElementById("pontosRestantes");
-
   const atributos = {
-    forca: document.getElementById("forca"),
-    inteligencia: document.getElementById("inteligencia"),
-    destreza: document.getElementById("destreza"),
+    forca: 0,
+    inteligencia: 0,
+    destreza: 0
   };
+  let pontosDisponiveis = 10;
 
-  const totalPontos = 10;
-
-  function atualizarPontosRestantes() {
-    const usados = Object.values(atributos).reduce(
-      (acc, input) => acc + parseInt(input.value),
-      0
-    );
-    const restantes = totalPontos - usados;
-    pontosRestantesSpan.textContent = restantes;
-
-    Object.values(atributos).forEach((input) => {
-      input.max = parseInt(input.value) + restantes;
+  function atualizarDisplay() {
+    document.getElementById("valor-forca").textContent = atributos.forca;
+    document.getElementById("valor-inteligencia").textContent = atributos.inteligencia;
+    document.getElementById("valor-destreza").textContent = atributos.destreza;
+    pontosRestantesSpan.textContent = pontosDisponiveis;
+    document.querySelectorAll(".btn-atributo").forEach(btn => {
+      btn.disabled = pontosDisponiveis <= 0;
     });
-
-    return restantes;
   }
 
-  Object.values(atributos).forEach((input) =>
-    input.addEventListener("input", atualizarPontosRestantes)
-  );
+  // Botões de incremento
+  document.getElementById("btn-forca").addEventListener("click", () => {
+    if (pontosDisponiveis > 0) {
+      atributos.forca++;
+      pontosDisponiveis--;
+      atualizarDisplay();
+    }
+  });
 
-  atualizarPontosRestantes();
+  document.getElementById("btn-inteligencia").addEventListener("click", () => {
+    if (pontosDisponiveis > 0) {
+      atributos.inteligencia++;
+      pontosDisponiveis--;
+      atualizarDisplay();
+    }
+  });
 
-  form.addEventListener("submit", (e) => {
+  document.getElementById("btn-destreza").addEventListener("click", () => {
+    if (pontosDisponiveis > 0) {
+      atributos.destreza++;
+      pontosDisponiveis--;
+      atualizarDisplay();
+    }
+  });
+
+  // Bloqueia recarregamento acidental
+  window.onbeforeunload = () => {
+    return "Tem certeza que quer sair? Suas alterações podem ser perdidas.";
+  };
+
+  // Envio do formulário
+  form.addEventListener("submit", function (e) {
     e.preventDefault();
 
-    if (atualizarPontosRestantes() !== 0) {
-      alert("Você precisa distribuir todos os 10 pontos de atributos.");
+    if (pontosDisponiveis > 0) {
+      alert("Você ainda tem pontos para distribuir!");
       return;
     }
 
@@ -43,68 +61,17 @@ document.addEventListener("DOMContentLoaded", () => {
     const raca = document.getElementById("raca").value;
     const classe = document.getElementById("classe").value;
 
-    const historia = gerarHistoria(nome, raca, classe, atributos);
-    alert(historia);
+    const personagem = {
+      nome,
+      raca,
+      classe,
+      ...atributos
+    };
 
-    // Espaço reservado para salvar no backend/future database:
-    // salvarPersonagem({ nome, raca, classe, atributos, historia });
-
-    form.reset();
-    atualizarPontosRestantes();
+    console.log("Personagem criado:", personagem);
+    alert(`Personagem criado com sucesso! Bem-vindo, ${nome} o ${classe} ${raca}.`);
+    // Aqui você pode redirecionar para a próxima página do jogo
   });
 
-  function gerarHistoria(nome, raca, classe, atributos) {
-    let cidadeNatal = gerarCidadeNatal(raca);
-    let clDescricao = descricaoClasse(classe);
-    let racDescricao = descricaoRaca(raca);
-    let personalidade = gerarTraçoPersonalidade(atributos);
-
-    return `🧙 Olá, ${nome}!
-
-Você é um(a) ${classe} da raça ${raca}, natural da cidade de ${cidadeNatal}. ${clDescricao} ${racDescricao}
-
-Desde cedo, demonstrou traços de ${personalidade}, algo que moldaria sua jornada. Agora, começa sua aventura pelas terras de Eldoran, um continente repleto de perigos, mistérios e glória.
-
-Que sua jornada seja digna de um herói.`;
-  }
-
-  function gerarCidadeNatal(raca) {
-    const cidades = {
-      Humano: ["Varelia", "Durnham", "Caminhador"],
-      Elfo: ["Luzérea", "Sylvana", "Nymm'Quel"],
-      Anão: ["Thordrim", "Karzun", "Forja-Funda"]
-    };
-    let lista = cidades[raca];
-    return lista[Math.floor(Math.random() * lista.length)];
-  }
-
-  function descricaoClasse(classe) {
-    const textos = {
-      Guerreiro: "Treinado nas artes da guerra, sua força bruta é admirada (e temida) nos campos de batalha.",
-      Mago: "Estudioso dos antigos grimórios, domina o mana com maestria e conjura magias esquecidas pelo tempo.",
-      Ladino: "Ágil, silencioso e astuto, suas lâminas dançam nas sombras enquanto seus olhos vigiam o caos."
-    };
-    return textos[classe];
-  }
-
-  function descricaoRaca(raca) {
-    const textos = {
-      Humano: "Adaptável e resiliente, sua espécie floresce nas mais diversas regiões.",
-      Elfo: "Ligado à natureza e às estrelas, possui uma sabedoria e longevidade impressionantes.",
-      Anão: "Mestre das forjas e das pedras, seu povo constrói impérios sob as montanhas."
-    };
-    return textos[raca];
-  }
-
-  function gerarTraçoPersonalidade(atributos) {
-    const f = parseInt(atributos.forca.value);
-    const i = parseInt(atributos.inteligencia.value);
-    const d = parseInt(atributos.destreza.value);
-
-    if (f > i && f > d) return "força e bravura";
-    if (i > f && i > d) return "inteligência e curiosidade";
-    if (d > f && d > i) return "agilidade e esperteza";
-
-    return "equilíbrio entre corpo e mente";
-  }
+  atualizarDisplay();
 });
