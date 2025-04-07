@@ -21,20 +21,20 @@ document.getElementById("form-personagem").addEventListener("submit", function (
   localStorage.setItem("personagem", JSON.stringify(personagem));
 
   // Enviar para Google Sheets (ajuste o link se necessário)
-  fetch("https://script.google.com/macros/s/AKfycbyNYSTPfDOPU-vyUXg4C0ao4VftjKoBFeVgDmt5AVeyDEu9tp6zFdbcdoPn_g9QEcKfdA/exec", {
-    method: "POST",
+  const url = 'https://script.google.com/macros/s/AKfycbyNYSTPfDOPU-vyUXg4C0ao4VftjKoBFeVgDmt5AVeyDEu9tp6zFdbcdoPn_g9QEcKfdA/exec';
+  const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+  
+  fetch(proxyUrl + url, {
+    method: 'POST',
     body: JSON.stringify(personagem),
     headers: {
-      "Content-Type": "application/json"
+      'Content-Type': 'application/json'
     }
   })
-    .then(response => response.text())
-    .then(data => {
-      console.log("Enviado para Sheets:", data);
-    })
-    .catch(error => {
-      console.error("Erro ao enviar:", error);
-    });
+  .then(response => response.text())
+  .then(response => console.log('Resposta:', response))
+  .catch(error => console.error('Erro:', error));
+  
 
   // Mostrar história gerada
   const historiaArea = document.getElementById("historia-gerada");
