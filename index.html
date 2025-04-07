@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🌍 RPG - Portal Inicial</title>
+  <link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+  <main>
+    <h1>🌟 Bem-vindo ao seu RPG!</h1>
+    <p>Escolha uma das opções abaixo:</p>
+
+    <div class="botoes">
+      <a href="criacao_personagem.html"><button>➕ Criar Personagem</button></a>
+      <a href="ver_personagem.html"><button>👀 Ver Personagem</button></a>
+      <a href="editar_personagem.html"><button>🛠️ Editar Personagem</button></a>
+      <button onclick="sincronizarPersonagem()">🔄 Sincronizar com Google Sheets</button>
+    </div>
+
+    <div id="status-sincronizacao"></div>
+  </main>
+
+  <script src="js/sincronizar.js"></script>
+</body>
+</html>
