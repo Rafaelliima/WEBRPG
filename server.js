@@ -3,13 +3,13 @@ const app = express();
 const path = require('path');
 const PORT = 3000;
 
-// Middleware para permitir receber JSON
+// Middleware para receber JSON
 app.use(express.json());
 
-// Servir arquivos estáticos (como o index.html)
+// Servir arquivos estáticos da pasta 'public'
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Endpoint para receber os dados do personagem
+// Endpoint para salvar personagem (pode simular salvamento por enquanto)
 app.post('/personagem', (req, res) => {
   console.log('Personagem recebido:', req.body);
   res.json({ mensagem: 'Personagem salvo com sucesso!' });

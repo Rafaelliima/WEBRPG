@@ -1,68 +1,33 @@
-document.getElementById("form-personagem").addEventListener("submit", function (event) {
-  event.preventDefault();
+document.getElementById('form-personagem').addEventListener('submit', function (e) {
+  e.preventDefault();
 
-  const nome = document.getElementById("nome").value.trim();
-  const sexo = document.getElementById("sexo").value;
-  const raca = document.getElementById("raca").value;
-  const classe = document.getElementById("classe").value;
-  const historiaEscolha = document.getElementById("historiaEscolha").value;
-
-  // Gerando a história final
   const personagem = {
-    nome,
-    sexo,
-    raca,
-    classe,
-    historiaEscolha
+    nome: document.getElementById('nome').value,
+    sexo: document.getElementById('sexo').value,
+    raca: document.getElementById('raca').value,
+    classe: document.getElementById('classe').value,
+    origem: document.getElementById('historiaEscolha').value
   };
 
-  // Gerar a história baseada nas escolhas do usuário
-  personagem.historia = gerarHistoria(personagem);
+  // Exibe no frontend
+  const resumo = `
+Nome: ${personagem.nome}
+Sexo: ${personagem.sexo}
+Raça: ${personagem.raca}
+Classe: ${personagem.classe}
+Origem: ${personagem.origem}
+  `;
 
-  // Salvar localmente
-  localStorage.setItem("personagem", JSON.stringify(personagem));
+  document.getElementById('historia-gerada').textContent = resumo;
+  document.getElementById('resumo-personagem').style.display = 'block';
 
-  // Enviar para o Google Sheets através do proxy
-  const url = 'https://script.google.com/macros/s/AKfycbyNYSTPfDOPU-vyUXg4C0ao4VftjKoBFeVgDmt5AVeyDEu9tp6zFdbcdoPn_g9QEcKfdA/exec';
-  const proxyUrl = 'https://corsproxy.io/?key=ec339eb9&url=' + encodeURIComponent(url);
-
-  fetch(proxyUrl, {
+  // Envia para o servidor
+  fetch('/personagem', {
     method: 'POST',
-    body: JSON.stringify(personagem),
-    headers: {
-      'Content-Type': 'application/json'
-    }
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(personagem)
   })
-  .then(response => response.json())  // Se a resposta for JSON
-  .then(response => {
-    console.log('Resposta:', response);
-    alert('Personagem criado com sucesso!');
-  })
-  .catch(error => {
-    console.error('Erro ao enviar:', error);
-    alert('Ocorreu um erro ao criar o personagem.');
-  });
+  .then(res => res.json())
+  .then(data => console.log(data))
+  .catch(err => console.error('Erro ao enviar:', err));
 });
-
-// Função que gera a história final com base nas escolhas
-function gerarHistoria({ nome, sexo, raca, classe, historiaEscolha }) {
-  const titulosClasse = {
-    Guerreiro: "o Bravo",
-    Mago: "o Sábio",
-    Ladino: "o Sombrio"
-  };
-
-  const origens = {
-    orfao: `cresceu sem família nas ruas frias de Arveth, desenvolvendo astúcia e sobrevivência.`,
-    nobre: `descende de uma família aristocrata de Velkaria, mas buscou fugir do luxo para trilhar seu próprio destino.`,
-    campones: `viveu uma vida simples nas plantações do Vale de Meredin até o destino bater à porta.`,
-    exilado: `foi expulso de sua terra natal após um acontecimento misterioso, carregando um passado sombrio.`
-  };
-
-  const historiaBase = `
-  ${nome}, ${sexo === 'masculino' ? 'nascido' : 'nascida'} da raça ${raca}, é conhecido como ${titulosClasse[classe]}.
-  ${nome} ${origens[historiaEscolha] || 'teve uma origem desconhecida.'}
-  Hoje, como um(a) ${classe.toLowerCase()}, caminha pelas terras de Eldoria em busca de glória, respostas ou redenção.`;
-
-  return historiaBase.trim();
-}
