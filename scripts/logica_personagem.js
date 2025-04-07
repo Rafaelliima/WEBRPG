@@ -21,7 +21,7 @@ document.getElementById("form-personagem").addEventListener("submit", function (
   localStorage.setItem("personagem", JSON.stringify(personagem));
 
   // Enviar para Google Sheets (ajuste o link se necessário)
-  fetch("https://script.google.com/macros/s/AKfycbyItoWKCDg3OEyewFLIimp5nLaSPbRXDBbmxlgBrXrcN4ywUjZGhZ9hmcldvp4oBLUhLQ/exec", {
+  fetch("https://script.google.com/macros/s/AKfycbyNYSTPfDOPU-vyUXg4C0ao4VftjKoBFeVgDmt5AVeyDEu9tp6zFdbcdoPn_g9QEcKfdA/exec", {
     method: "POST",
     body: JSON.stringify(personagem),
     headers: {
