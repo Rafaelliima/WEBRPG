@@ -1,28 +1,21 @@
 const express = require('express');
-const axios = require('axios');
 const app = express();
-const port = 3000;
+const path = require('path');
+const PORT = 3000;
 
-// Habilitar o envio de JSON
+// Middleware para permitir receber JSON
 app.use(express.json());
 
-// Rota para enviar os dados do personagem para o Google Sheets
-app.post('/enviar-personagem', (req, res) => {
-  const personagem = req.body;
+// Servir arquivos estáticos (como o index.html)
+app.use(express.static(path.join(__dirname, 'public')));
 
-  const url = 'https://script.google.com/macros/s/AKfycbyNYSTPfDOPU-vyUXg4C0ao4VftjKoBFeVgDmt5AVeyDEu9tp6zFdbcdoPn_g9QEcKfdA/exec';
-
-  // Enviar para o Google Sheets via Google Apps Script
-  axios.post(url, personagem)
-    .then(response => {
-      res.json({ message: 'Dados enviados com sucesso!', data: response.data });
-    })
-    .catch(error => {
-      res.status(500).json({ message: 'Erro ao enviar dados', error: error.message });
-    });
+// Endpoint para receber os dados do personagem
+app.post('/personagem', (req, res) => {
+  console.log('Personagem recebido:', req.body);
+  res.json({ mensagem: 'Personagem salvo com sucesso!' });
 });
 
 // Iniciar o servidor
-app.listen(port, () => {
-  console.log(`Servidor rodando na porta ${port}`);
+app.listen(PORT, () => {
+  console.log(`Servidor rodando em http://localhost:${PORT}`);
 });
